@@ -1,0 +1,24 @@
+version: '3'
+services:
+  db_postgres:
+    image: postgres:14.1
+    container_name: db_postgres
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: db
+    ports:
+      - 5432:5432
+    volumes:
+      - "$HOME/docker/db_postgres/postgres/data:/var/lib/postgresql/data"
+
+  pgAdmin:
+    image: dpage/pgadmin4
+    container_name: pg-admin
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=pgadmin@test.com
+      - PGADMIN_DEFAULT_PASSWORD=123456789
+    ports:
+      - 8050:80
+    volumes:
+      - "$HOME/docker/pgadmin:/var/lib/pgadmin"
